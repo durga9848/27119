@@ -1,0 +1,72 @@
+doctype html
+include index
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Job Details
+    style.
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      header {
+        background-color: #4CAF50;
+        color: white;
+        text-align: center;
+        padding: 20px 0;
+      }
+
+      h1 {
+        margin: 0;
+      }
+
+      main {
+        padding: 20px;
+      }
+
+      .job-details table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .job-details th,
+      .job-details td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+
+      .job-details th {
+        background-color: #f2f2f2;
+      }
+
+  body
+    header
+      h1 Job Details
+    main
+      .job-details
+        table
+          tr
+            th#job-id-label Name
+            td#job-id-value #{job.job_id}
+          tr
+            th Title
+            td #{job.title}
+          tr
+            th Description
+            td #{job.description}
+          tr
+            th Company ID
+            td #{job.company_id}
+          tr
+            th Location
+            td #{job.location}
+          tr
+            th Salary
+            td #{job.salary}
+          tr
+            th Posted Date
+            td #{job.posted_date}

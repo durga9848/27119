@@ -25,6 +25,25 @@ app.get("/home", function(req, res) {
         res.render('homepage', {"jobs":results})
     });
 });
+// Assuming you have already defined `app` and `db` objects
+
+app.get("/view-job/:id", function(req, res) {
+    const jobId = req.params.id;
+    const sql = 'SELECT * FROM job_listings WHERE job_id = ?';
+    db.query(sql, [jobId])
+        .then(results => {
+            if (results.length > 0) {
+                const job = results[0];
+                res.render('view-job', { job });
+            } else {
+                res.status(404).send('Job not found');
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching job:', error);
+            res.status(500).send('Internal Server Error');
+        });
+});
 
 // Create a route for /goodbye
 // Responds to a 'GET' request
@@ -42,6 +61,8 @@ app.get("/hello/:name", function(req, res) {
     //  Retrieve the 'name' parameter and use it in a dynamically generated page
     res.send("Hello " + req.params.name);
 });
+
+
 
 // Start server on port 3000
 app.listen(3000,function(){

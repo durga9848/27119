@@ -3,25 +3,46 @@ html(lang="en")
   head
     meta(charset="UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    title 
+    title Job Search
     link(rel="stylesheet", href="styles.css") 
   body
     include index
     header
       .hero-section
         h1 FIND YOUR DREAM JOB!!!.
-        form(id="search-form")
-          input(type="text", name="q", placeholder="Job title")
-          input(type="text", name="l", placeholder="Location")
-          button(type="submit") Find Jobs
+        form#search-form(onsubmit="return false;")
+          input(type="text", id="job-title", placeholder="Job title")
+          input(type="text", id="location", placeholder="Location")
+          button(type="button", onclick="searchJobs()") Find Jobs
     main
       section.search-results
         ul.job-listings
           each job in jobs
-            li.job-listing
+            li.job-listing(onclick=`openJobDetails('${job.job_id}')`)
               h3.job-title= job.title
               p.job-company= job.company
               p.job-location= job.location
               p.job-description= job.description
 
+    script.
+      function searchJobs() {
+        var title = document.getElementById('job-title').value.toLowerCase();
+        var location = document.getElementById('location').value.toLowerCase();
+        
+        var jobListings = document.querySelectorAll('.job-listing');
+        
+        jobListings.forEach(jobListing => {
+          var jobTitle = jobListing.querySelector('.job-title').innerText.toLowerCase();
+          var jobLocation = jobListing.querySelector('.job-location').innerText.toLowerCase();
+          
+          if (jobTitle.includes(title) && jobLocation.includes(location)) {
+            jobListing.style.display = '';
+          } else {
+            jobListing.style.display = 'none';
+          }
+        });
+      }
 
+      function openJobDetails(jobId) {
+        window.location.href = `/view-job/${jobId}`;
+      }
