@@ -59,7 +59,12 @@ html
       a(href='#', class=(currentPage === 'clients' ? 'active' : '')) Clients
       a(href='#', class=(currentPage === 'contact' ? 'active' : '')) Contact
     #main
-      span(style='font-size:30px;cursor:pointer', onclick='toggleNav()') &#9776; HOME
+      .navbar
+        span(style='font-size:30px;cursor:pointer', onclick='toggleNav()') &#9776; HOME
+        img.logo(src="indeed-logo.png", alt="")
+        ul.nav-links
+          li.nav-link Sign in
+          li.nav-link Create Account
       
   script.
     var isOpen = false;

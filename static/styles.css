@@ -1,0 +1,159 @@
+/* styles.css */
+
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+  }
+  
+  header {
+    background-color: #ffffff;
+    padding: 20px;
+  }
+  
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+  }
+  
+  .nav-link {
+    margin-right: 20px;
+    font-size: 16px;
+    color: #333333;
+  }
+  
+  .hero-section {
+    text-align: center;
+    padding: 50px;
+  }
+  
+  .hero-section h1 {
+    font-size: 36px;
+    color: #333333;
+    margin-bottom: 20px;
+  }
+  
+  .hero-section p {
+    font-size: 18px;
+    color: #666666;
+    margin-bottom: 40px;
+  }
+  
+  form {
+    display: flex;
+    justify-content: center;
+  }
+  
+  input[type="text"] {
+    padding: 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+    border: 1px solid #cccccc;
+  }
+  
+  button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #45a049;
+  }
+  
+  main {
+    padding: 20px;
+  }
+  
+  .search-results {
+    margin-top: 40px;
+  }
+  .job-listings {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two jobs in a row */
+    grid-gap: 20px; /* Spacing between job listings */
+    list-style: none;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+   
+  .job-listing {
+    background-color: #ffffff;
+    box-sizing: border-box;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  
+  @media (max-width: 768px) {
+    .job-listing {
+      width: 100%; /* On smaller screens, each job takes full width */
+    }
+  }
+  .job-listings {
+    list-style: none;
+  }
+  
+  .job-listing {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  
+  .job-title {
+    font-size: 20px;
+    color: #333333;
+    margin-bottom: 10px;
+  }
+  
+  .job-company {
+    color: #666666;
+    margin-bottom: 5px;
+  }
+  
+  .job-location {
+    color: #666666;
+    margin-bottom: 5px;
+  }
+  
+  .job-description {
+    color: #333333;
+  }
+  
+  footer {
+    background-color: #333333;
+    color: #ffffff;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .footer-links {
+    list-style: none;
+  }
+  
+  .footer-link {
+    display: inline-block;
+    margin-right: 10px;
+    color: #ffffff;
+    text-decoration: none;
+  }
+  
+  .footer-link:hover {
+    text-decoration: underline;
+  }
+  

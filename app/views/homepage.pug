@@ -1,0 +1,27 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title 
+    link(rel="stylesheet", href="styles.css") 
+  body
+    include index
+    header
+      .hero-section
+        h1 FIND YOUR DREAM JOB!!!.
+        form(id="search-form")
+          input(type="text", name="q", placeholder="Job title")
+          input(type="text", name="l", placeholder="Location")
+          button(type="submit") Find Jobs
+    main
+      section.search-results
+        ul.job-listings
+          each job in jobs
+            li.job-listing
+              h3.job-title= job.title
+              p.job-company= job.company
+              p.job-location= job.location
+              p.job-description= job.description
+
+
