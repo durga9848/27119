@@ -7,7 +7,7 @@ html(lang="en")
     link(rel="stylesheet", href="login_registration.css")
   body
     .container
-      h1 Register
+      h1 Company Register
       form(action="/company_set-password", method="POST")
         label(for="email") Email:
         input(type="email", id="email", name="email", required)
@@ -17,4 +17,4 @@ html(lang="en")
         input(type="password", id="confirm_password", name="confirm_password", required)
         button(type="submit") Register
       p Already have an account? 
-        a(href="/company_login") Login here
+        a(href="/company") Login here

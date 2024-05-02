@@ -14,7 +14,7 @@ class Company {
         this.email = email;
     }
     async getIdFromEmail() {
-        var sql = "SELECT id FROM Companys WHERE Companys.email = ?";
+        var sql = "SELECT id FROM Companies WHERE Companies.email = ?";
         const result = await db.query(sql, [this.email]);
         // TODO LOTS OF ERROR CHECKS HERE..
         if (JSON.stringify(result) != '[]') {
@@ -27,13 +27,13 @@ class Company {
     }
     async setUserPassword(password) {
         const pw = await bcrypt.hash(password, 10);
-        var sql = "UPDATE Companys SET password = ? WHERE Companys.id = ?"
+        var sql = "UPDATE Companies SET password = ? WHERE Companies.id = ?"
         const result = await db.query(sql, [pw, this.id]);
         return true;
     }
     async addUser(password) {
         const pw = await bcrypt.hash(password, 10);
-        var sql = "INSERT INTO Companys (email, password) VALUES (? , ?)";
+        var sql = "INSERT INTO Companies (email, password) VALUES (? , ?)";
         const result = await db.query(sql, [this.email, pw]);
         console.log(result.insertId);
         this.id = result.insertId;
@@ -41,7 +41,7 @@ class Company {
     }
     async authenticate(submitted) {
         // Get the stored, hashed password for the company
-        var sql = "SELECT password FROM Companys WHERE id = ?";
+        var sql = "SELECT password FROM Companies WHERE id = ?";
         const result = await db.query(sql, [this.id]);
         const match = await bcrypt.compare(submitted, result[0].password);
         if (match == true) {

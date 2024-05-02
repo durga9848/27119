@@ -54,10 +54,10 @@ html
       }
   body
     #mySidenav.sidenav
-      a(href='/home', class=(currentPage === 'about' ? 'active' : 'default')) Home
+      a(href='/company_homepage', class=(currentPage === 'about' ? 'active' : 'default')) Home
       //- a(href='#', class=(currentPage === 'services' ? 'active' : '')) Services
-      a(href='/applied_jobs', class=(currentPage === 'clients' ? 'active' : '')) Applied 
-      a(href='#', class=(currentPage === 'contact' ? 'active' : '')) Contact
+      a(href='/create-job', class=(currentPage === 'clients' ? 'active' : '')) Create Job
+      //- a(href='#', class=(currentPage === 'contact' ? 'active' : '')) Contact
     #main
       .navbar
         span(style='font-size:30px;cursor:pointer', onclick='toggleNav()') &#9776; HOME

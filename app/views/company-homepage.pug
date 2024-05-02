@@ -18,7 +18,7 @@ html(lang="en")
     include header
     header
       .hero-section
-        h1 Applied Jobs
+        h1 Created Jobs
         if results.length > 0
           ul
             each job in results
@@ -31,6 +31,6 @@ html(lang="en")
                     p(style="margin-bottom: 5px;") Salary: #{job.salary}
                   div
                     p(style="margin-bottom: 5px;") Posted Date: #{job.posted_date}
-                    p(style="margin-bottom: 5px;") Company Email: #{job.company_email}
+                    //- p(style="margin-bottom: 5px;") Company Email: #{job.company_email}
         else
           p No applied jobs found.

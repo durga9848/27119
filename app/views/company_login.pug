@@ -7,7 +7,7 @@ html(lang="en")
     link(rel="stylesheet", href="login_registration.css")
   body
     .container
-      h1 Login
+      h1 Company Login
       form(action="/company_authenticate", method="POST")
         label(for="email") Email:
         input(type="text", id="email", name="email", required)
@@ -15,4 +15,4 @@ html(lang="en")
         input(type="password", id="password", name="password", required)
         button(type="submit") Login
       p Don't have an account? 
-        a(href="/comapany_signup") Register here
+        a(href="/company_signup") Register here

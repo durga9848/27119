@@ -39,7 +39,9 @@ app.set('views', './app/views');
 app.get('/signup', function (req, res) {
     res.render('signup');
 });
-
+app.get('/company_signup', function (req, res) {
+    res.render('company_signup');
+});
 app.get('/login', function (req, res) {
     res.render('login');
 });
@@ -49,8 +51,9 @@ app.get('/create-job', function (req, res) {
 });
 
 app.post('/create_job', async function(req, res) {
+    const company_id = req.session.uid;
     try {
-        const { title, description, company_id, location, salary, posted_date } = req.body;
+        const { title, description, location, salary, posted_date } = req.body;
         
         const sql = `INSERT INTO job_listings (title, description, company_id, location, salary, posted_date) VALUES (?, ?, ?, ?, ?, ?)`;
         
@@ -59,7 +62,7 @@ app.post('/create_job', async function(req, res) {
         // Execute the SQL query
         await db.query(sql, values);
         
-        res.redirect('/company_home');
+        res.redirect('/company_homepage');
     } catch (error) {
         console.error('Error creating job listing:', error);
         res.status(500).send('Internal Server Error');
@@ -149,7 +152,7 @@ app.get("/company", function (req, res) {
 
 
 // Check submitted email and password pair
-app.post('/comapany_authenticate', async function (req, res) {
+app.post('/company_authenticate', async function (req, res) {
     try {
         const { email, password } = req.body;
         if (!email || !password) {
@@ -170,7 +173,7 @@ app.post('/comapany_authenticate', async function (req, res) {
         req.session.uid = uId;
         req.session.loggedIn = true;
         console.log(req.session.id);
-        res.redirect('/home');
+        res.redirect('/company_homepage');
     } catch (err) {
         console.error(`Error while authenticating user:`, err.message);
         res.status(500).send('Internal Server Error');
@@ -264,7 +267,7 @@ app.get("/applied_jobs", async function(req, res) {
 app.get("/company_homepage", async function(req, res) {
     const userId = req.session.uid;
     try {
-        const results = await db.query(`select * from job_listings where comapany_id = ?`, [userId]);
+        const results = await db.query(`select * from job_listings where company_id = ?`, [userId]);
         res.render("company-homepage", { results: results });
     } catch (error) {
         console.error("Error fetching applied jobs:", error);
