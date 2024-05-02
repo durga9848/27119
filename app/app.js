@@ -245,15 +245,8 @@ app.get("/goodbye", function(req, res) {
 app.get("/applied_jobs", async function(req, res) {
     const userId = req.session.uid;
     try {
-        const results = await db.query(`
-            SELECT DISTINCT job_listings.*, Users.email AS user_email, Companies.email AS company_email 
-            FROM job_listings 
-            JOIN applied_jobs ON applied_jobs.job_id = job_listings.job_id
-            JOIN Users ON Users.id = applied_jobs.user_id
-            JOIN Companies ON Companies.id = job_listings.company_id 
-            WHERE Users.id = ?
-        `, [userId]);
-        res.render("applied-jobs", { results: results });
+        const results = await db.query(`select * from job_listing where comapany_id = ?`, [userId]);
+        res.render("company-homepage", { results: results });
     } catch (error) {
         console.error("Error fetching applied jobs:", error);
         res.status(500).send("Internal server error");
