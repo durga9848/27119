@@ -44,6 +44,27 @@ app.get('/login', function (req, res) {
     res.render('login');
 });
 
+app.get('/create-job', function (req, res) {
+    res.render('create-job');
+});
+
+app.post('/create_job', async function(req, res) {
+    try {
+        const { title, description, company_id, location, salary, posted_date } = req.body;
+        
+        const sql = `INSERT INTO job_listings (title, description, company_id, location, salary, posted_date) VALUES (?, ?, ?, ?, ?, ?)`;
+        
+        const values = [title, description, company_id, location, salary, posted_date];
+        
+        // Execute the SQL query
+        await db.query(sql, values);
+        
+        res.redirect('/company_home');
+    } catch (error) {
+        console.error('Error creating job listing:', error);
+        res.status(500).send('Internal Server Error');
+    }
+});
 
 app.get("/", function (req, res) {
     try {
@@ -255,6 +276,8 @@ app.get("/apply_job/:id", async function(req, res) {
         res.status(500).json({ error: "Internal server error." });
     }
 });
+
+
 
 
 

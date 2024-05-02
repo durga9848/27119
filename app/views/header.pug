@@ -1,0 +1,83 @@
+doctype html
+html
+  head
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    style.
+      body {
+        font-family: "Lato", sans-serif;
+      }
+
+      .sidenav {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: #111;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 60px;
+      }
+
+      .sidenav a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+        transition: 0.3s;
+      }
+
+      .sidenav a:hover {
+        color: #f1f1f1;
+      }
+
+      .sidenav a.active {
+        background-color: #4CAF50;
+        color: white;
+      }
+
+      .sidenav a.default {
+        color: #4CAF50;
+        font-weight: bold;
+      }
+
+      #main {
+        transition: margin-left .5s;
+        padding: 16px;
+      }
+
+      @media screen and (max-height: 450px) {
+        .sidenav {padding-top: 15px;}
+        .sidenav a {font-size: 18px;}
+      }
+  body
+    #mySidenav.sidenav
+      a(href='/home', class=(currentPage === 'about' ? 'active' : 'default')) Home
+      //- a(href='#', class=(currentPage === 'services' ? 'active' : '')) Services
+      a(href='/applied_jobs', class=(currentPage === 'clients' ? 'active' : '')) Applied 
+      a(href='#', class=(currentPage === 'contact' ? 'active' : '')) Contact
+    #main
+      .navbar
+        span(style='font-size:30px;cursor:pointer', onclick='toggleNav()') &#9776; HOME
+        img.logo(src="indeed-logo.png", alt="")
+        //- ul.nav-links
+        //-   li.nav-link Sign in
+        //-   li.nav-link Create Account
+      
+  script.
+    var isOpen = false;
+    var currentPage = 'about';
+
+    function toggleNav() {
+      if (isOpen) {
+        document.getElementById("mySidenav").style.width = "0";
+        document.getElementById("main").style.marginLeft = "0";
+        isOpen = false;
+      } else {
+        document.getElementById("mySidenav").style.width = "250px";
+        document.getElementById("main").style.marginLeft = "250px";
+        isOpen = true;
+      }
+    }
