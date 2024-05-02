@@ -155,10 +155,10 @@ app.get("/goodbye", function(req, res) {
 });
 
 app.get("/applied_jobs", async function(req, res) {
-    const userId = 5;
+    const userId = req.session.uid;
     try {
         const results = await db.query(`
-            SELECT job_listings.*, Users.email AS user_email, Companies.email AS company_email 
+            SELECT DISTINCT job_listings.*, Users.email AS user_email, Companies.email AS company_email 
             FROM job_listings 
             JOIN applied_jobs ON applied_jobs.job_id = job_listings.job_id
             JOIN Users ON Users.id = applied_jobs.user_id
@@ -173,6 +173,7 @@ app.get("/applied_jobs", async function(req, res) {
 });
 
 
+
 app.get("/apply_job/:id", async function(req, res) {
     try {
         const userId = req.session.uid;
@@ -181,8 +182,7 @@ app.get("/apply_job/:id", async function(req, res) {
         const values = [jobId, userId];
 
         await db.query(sql, values);
-
-        res.status(201).json({ message: "Job applied successfully." });
+        res.redirect('/applied_jobs')
     } catch (error) {
         console.error("Error applying for job:", error);
         res.status(500).json({ error: "Internal server error." });
