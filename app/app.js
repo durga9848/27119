@@ -154,6 +154,47 @@ app.get("/goodbye", function(req, res) {
     res.send("Goodbye world!");
 });
 
+app.get("/applied_jobs", async function(req, res) {
+    const userId = 5;
+    try {
+        const results = await db.query(`
+            SELECT job_listings.*, Users.email AS user_email, Companies.email AS company_email 
+            FROM job_listings 
+            JOIN applied_jobs ON applied_jobs.job_id = job_listings.job_id
+            JOIN Users ON Users.id = applied_jobs.user_id
+            JOIN Companies ON Companies.id = job_listings.company_id 
+            WHERE Users.id = ?
+        `, [userId]);
+        res.render("applied-jobs", { results: results });
+    } catch (error) {
+        console.error("Error fetching applied jobs:", error);
+        res.status(500).send("Internal server error");
+    }
+});
+
+
+app.get("/apply_job/:id", async function(req, res) {
+    try {
+        const userId = req.session.uid;
+        const jobId = req.params.id;
+        const sql = "INSERT INTO applied_jobs (job_id, user_id) VALUES (?, ?)";
+        const values = [jobId, userId];
+
+        await db.query(sql, values);
+
+        res.status(201).json({ message: "Job applied successfully." });
+    } catch (error) {
+        console.error("Error applying for job:", error);
+        res.status(500).json({ error: "Internal server error." });
+    }
+});
+
+
+
+
+
+
+
 // Create a dynamic route for /hello/<name>, where name is any value provided by user
 // At the end of the URL
 // Responds to a 'GET' request

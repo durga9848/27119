@@ -43,6 +43,22 @@ html(lang="en")
         background-color: #f2f2f2;
       }
 
+      .apply-button {
+        margin-top: 20px;
+        text-align: center;
+      }
+
+      .apply-button a {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        text-decoration: none; /* Remove underline */
+      }
+
   body
     header
       h1 Job Details
@@ -70,3 +86,5 @@ html(lang="en")
           tr
             th Posted Date
             td #{job.posted_date}
+      .apply-button
+        a(href=`/apply_job/${job.job_id}`) Apply

@@ -1,0 +1,37 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Job Search
+    link(rel="stylesheet", href="styles.css")
+    style.
+      .job-info-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+      .job-info-container div {
+        text-align: left;
+      }
+  body
+    include index
+    header
+      .hero-section
+        h1 Applied Jobs
+        if results.length > 0
+          ul
+            each job in results
+              li(style="border: 1px solid #ccc; padding: 10px; margin-bottom: 20px;")
+                h2(style="color: #333; font-size: 1.5rem; margin-bottom: 5px;") #{job.title}
+                .job-info-container
+                  div
+                    p(style="margin-bottom: 5px;") Description: #{job.description}
+                    p(style="margin-bottom: 5px;") Location: #{job.location}
+                    p(style="margin-bottom: 5px;") Salary: #{job.salary}
+                  div
+                    p(style="margin-bottom: 5px;") Posted Date: #{job.posted_date}
+                    p(style="margin-bottom: 5px;") User Email: #{job.user_email}
+                    p(style="margin-bottom: 5px;") Company Email: #{job.company_email}
+        else
+          p No applied jobs found.

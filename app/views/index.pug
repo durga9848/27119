@@ -56,15 +56,15 @@ html
     #mySidenav.sidenav
       a(href='/home', class=(currentPage === 'about' ? 'active' : 'default')) Home
       //- a(href='#', class=(currentPage === 'services' ? 'active' : '')) Services
-      a(href='#', class=(currentPage === 'clients' ? 'active' : '')) Clients
+      a(href='/applied_jobs', class=(currentPage === 'clients' ? 'active' : '')) Applied 
       a(href='#', class=(currentPage === 'contact' ? 'active' : '')) Contact
     #main
       .navbar
         span(style='font-size:30px;cursor:pointer', onclick='toggleNav()') &#9776; HOME
         img.logo(src="indeed-logo.png", alt="")
-        ul.nav-links
-          li.nav-link Sign in
-          li.nav-link Create Account
+        //- ul.nav-links
+        //-   li.nav-link Sign in
+        //-   li.nav-link Create Account
       
   script.
     var isOpen = false;
